@@ -3,11 +3,16 @@ package com.bridgelabz.employeepayrollapp.controller;
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 import org.springframework.web.bind.annotation.*;
+import com.bridgelabz.employeepayrollapp.service.EmployeePayrollService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @RestController
 @RequestMapping("/employeepayrollservice")
 public class EmployeePayrollController {
 
+    @Autowired
+    private EmployeePayrollService service;
 
     @GetMapping("/")
     public String getMessage() {
