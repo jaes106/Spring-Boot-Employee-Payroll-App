@@ -3,6 +3,7 @@ package com.bridgelabz.employeepayrollapp.service;
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,20 @@ public class EmployeePayrollService {
     public List<EmployeePayrollData> getAll() {
         log.info("Fetching all employees");
         return employeeList;
+    }
+
+    public EmployeePayrollData update(int id, EmployeePayrollDTO dto) {
+        EmployeePayrollData emp = getById(id);
+
+        emp.setName(dto.getName());
+        emp.setSalary(dto.getSalary());
+
+        return emp;
+    }
+    public EmployeePayrollData getById(int id) {
+        return employeeList.stream()
+                .filter(emp -> emp.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
     }
 }
