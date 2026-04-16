@@ -4,14 +4,24 @@ import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EmployeePayrollService {
 
-    public EmployeePayrollData createEmployee(EmployeePayrollDTO dto) {
-        return new EmployeePayrollData(1, dto);
+    private List<EmployeePayrollData> employeeList = new ArrayList<>();
+    private int idCounter = 1;
+
+    // CREATE + STORE IN LIST
+    public EmployeePayrollData create(EmployeePayrollDTO dto) {
+        EmployeePayrollData emp = new EmployeePayrollData(idCounter++, dto);
+        employeeList.add(emp);
+        return emp;
     }
 
-    public String getMessage() {
-        return "Employee Payroll App is Running (via Service)";
+    // OPTIONAL (to verify storage)
+    public List<EmployeePayrollData> getAll() {
+        return employeeList;
     }
 }
