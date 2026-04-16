@@ -2,7 +2,9 @@ package com.bridgelabz.employeepayrollapp.service;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class EmployeePayrollService {
+
+    @Value("${spring.datasource.url:NOT_FOUND}")
+    private String dbUrl;
+
+    @PostConstruct
+    public void checkEnv() {
+        System.out.println("DB URL = " + dbUrl);
+    }
 
     private List<EmployeePayrollData> employeeList = new ArrayList<>();
     private int idCounter = 1;
