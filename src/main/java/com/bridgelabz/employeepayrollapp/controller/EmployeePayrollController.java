@@ -21,12 +21,6 @@ public class EmployeePayrollController {
         return service.create(dto);
     }
 
-    @PutMapping("/update/{id}")
-    public EmployeePayrollData update(@PathVariable int id,
-                                      @Valid @RequestBody EmployeePayrollDTO dto) {
-        return service.update(id, dto);
-    }
-
     @GetMapping("/")
     public String getMessage() {
         return "Employee Payroll App is Running";
