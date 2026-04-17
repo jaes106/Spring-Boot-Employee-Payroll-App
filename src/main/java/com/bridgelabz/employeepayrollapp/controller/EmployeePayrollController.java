@@ -21,9 +21,21 @@ public class EmployeePayrollController {
         return service.create(dto);
     }
 
-    @GetMapping("/")
-    public String getMessage() {
-        return "Employee Payroll App is Running";
+    @GetMapping("/{id}")
+    public EmployeePayrollData getById(@PathVariable int id) {
+        return service.getById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public EmployeePayrollData update(@PathVariable int id,
+                                      @Valid @RequestBody EmployeePayrollDTO dto) {
+        return service.update(id, dto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        service.delete(id);
+        return "Deleted employee with id " + id;
     }
 
     @GetMapping("/all")

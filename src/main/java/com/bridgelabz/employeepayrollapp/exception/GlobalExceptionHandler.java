@@ -22,4 +22,14 @@ public class GlobalExceptionHandler {
 
         return errors;
     }
+
+    @ExceptionHandler(EmployeePayrollException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, String> handleEmployeeNotFound(EmployeePayrollException ex) {
+
+        Map<String, String> error = new HashMap<>();
+        error.put("message", ex.getMessage());
+
+        return error;
+    }
 }
